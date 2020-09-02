@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  data:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - module:/var/www/html/modules
+      - forms:/var/www/html/profiles
+      - layout:/var/www/html/themes
+      - pages:/var/www/html/sites
+
+  postgres:
+    image: postgres:12.1
+    environment:
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - sql:/var/lib/postgresql/data
+
+volumes:
+  module:
+  forms:
+  layout:
+  pages:
+  sql:
